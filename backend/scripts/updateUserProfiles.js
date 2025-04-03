@@ -12,6 +12,7 @@
  * When triggered from the Admin Dashboard, the script accepts a progressState
  * object that is updated during execution to show real-time progress.
  */
+const path = require('path');
 require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 const mongoose = require('mongoose');
 const cron = require('node-cron');
@@ -19,11 +20,10 @@ const User = require('../models/User');
 const axios = require('axios');
 const connectDB = require('../config/db');
 const fs = require('fs');
-const path = require('path');
 
 // Set the base URL for API calls
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:5000/api';
-const API_KEY = process.env.CRON_API_KEY || 'default-cron-key';
+const API_BASE_URL = process.env.API_BASE_URL;
+const API_KEY = process.env.CRON_API_KEY;
 
 // MongoDB Connection (with fallback)
 const connectToMongoDB = async () => {
@@ -31,7 +31,7 @@ const connectToMongoDB = async () => {
     return await connectDB();
   } catch (error) {
     console.log('Falling back to direct MongoDB connection');
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cp-tracker';
+    const mongoURI = process.env.MONGODB_URI;
     const conn = await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true

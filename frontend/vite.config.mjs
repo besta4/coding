@@ -10,10 +10,9 @@ export default defineConfig({
   plugins: [react(), viteTsconfigPaths()],
   server: {
     open: true,
-    port: 3000,
     proxy: {
       '/api': {
-        target: 'http://34.204.47.217:5000',
+        target: 'http://54.87.221.54',
         changeOrigin: true,
         secure: false
       }
