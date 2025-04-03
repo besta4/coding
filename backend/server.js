@@ -43,7 +43,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: ['https://54.87.221.54'], // Allow both frontend origins
+  origin: ['https://codestats.zapto.org'], // Allow both frontend origins
   credentials: true
 }));
 app.use(express.json());
